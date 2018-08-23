@@ -1,0 +1,5 @@
+import study
+
+study.main()
+
+
