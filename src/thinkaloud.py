@@ -14,7 +14,7 @@ def checkSystem(i):
 def main():
     for a in range(1,7):
         dev = '{}{}'.format("dev", a)
-        root = api.path + '%s/thinkalouds/' % dev
+        root = api.path + '/%s/thinkalouds/' % dev
         dirlist = [item for item in os.listdir(root) if os.path.isfile(os.path.join(root, item))]
         for i in dirlist:
             if i.endswith('.avi'):

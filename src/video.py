@@ -4,18 +4,24 @@ import subprocess
 
 def main():
     def getLength(input_video):
-        result = subprocess.Popen('ffprobe -i ' + input_video + ' -show_entries format=duration -v quiet -of csv="p=0"', shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        print "Input video: ", input_video
+        result = subprocess.Popen('ffprobe -i "' + input_video + '" -show_entries format=duration -v quiet -of csv="p=0"', shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        print "Result: ", result
         output = result.communicate()
         if output[0][:-9] == '':
             return 0
+        print " ------------------------------------------------"
+        print output
+        print "From video main: -------------" ,output[0][:-9]
         return int(output[0][:-9])
 
     y = 1
 
     for a in range(1,7):
         dev = '{}{}'.format("dev", a)
-        root = api.path + '{}/thinkalouds/'.format(dev)
+        root = api.path + '/{}/thinkalouds/'.format(dev)
         dirlist = [item for item in os.listdir(root) if os.path.isfile(os.path.join(root, item))]
+        print dirlist
         for i in dirlist:
             if i.endswith('.avi'):
                 date = i[16:26].replace("_", "-")

@@ -10,7 +10,7 @@ def main():
     for a in range(1,7):
         list = []
         dev = '{}{}'.format("dev", a)
-        root = api.path + '{}/interviews/'.format(dev)
+        root = api.path + '/{}/interviews/'.format(dev)
         dirlist = [ item for item in os.listdir(root) if os.path.isfile(os.path.join(root, item)) ]
 
         for i in dirlist:
@@ -51,7 +51,7 @@ def main():
                     x = x + 1
 
         print list
-        print list[0][0], list[0][1]
+        # print list[0][0], list[0][1]
 
         for i in dirlist:
             if i.endswith('.mp3'):
@@ -70,7 +70,7 @@ def main():
 
                 data_audio = {
                     "description": description,
-                    "duration": (MP3(api.path + '{}/interviews/{}'.format(dev,i))).info.length,
+                    "duration": (MP3(api.path + '/{}/interviews/{}'.format(dev,i))).info.length,
                     "id": "",
                     "interview": api.get('interviews', y+1),
                     "status": "PRIVATE",

@@ -6,7 +6,7 @@ def main():
     devs = api.getAll('developers')
     for a in range(1,7):
         dev = '{}{}'.format("dev", a)
-        root = api.path + '%s/logs/1-original/' % dev
+        root = api.path + '/%s/logs/1-original/' % dev
         dirlist = [item for item in os.listdir(root) if os.path.isfile(os.path.join(root, item))]
         for i in dirlist:
             date = i[0:10].replace("_", "-")

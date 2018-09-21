@@ -6,15 +6,13 @@ login = {
   "username": "admin"
 }
 
-jwt_endpoint = 'http://localhost:9000/api/'
-path = 'C:/Users/admin/study/'
+jwt_endpoint = 'http://localhost:9060/api/'
+path = '/home/sat/Documents/Data'
 
 def token():
   jwt_token_response = requests.post(url=jwt_endpoint + 'authenticate', json=login)
-  print jwt_token_response.text
+  # print jwt_token_response.text
   token = jwt_token_response.json()['id_token']
-  print token
-  print "hello"
   return token
 
 def headers():
@@ -28,9 +26,19 @@ def request(name, type, data):
   return
 
 def get(type, id):
-  response = requests.get(url=jwt_endpoint + type + '/' + str(id), headers=headers())
+  print "From api get: ", type, id
+  print jwt_endpoint + type + '/' + str(id)
+  h = headers()
+  print "From get: ", h
+  response = requests.get(url=jwt_endpoint + type + '/' + str(id), headers=h)
+  print response
+  print response.text
   return response.json()
 
 def getAll(type):
+  print jwt_endpoint + type
+  print headers()
   response = requests.get(url=jwt_endpoint + type, headers=headers())
+  print response.json()
   return response.json()
+

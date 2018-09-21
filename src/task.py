@@ -9,8 +9,9 @@ def main():
         "license": ""
 
     }
+    print "reached 1"
     api.request("Task", 'tasks', data_task)
-
+    print "reached 2"
     data_task = {
         "id": "",
         "study": api.get('studies', 1),
